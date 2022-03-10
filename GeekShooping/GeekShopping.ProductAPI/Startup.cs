@@ -36,11 +36,12 @@ namespace GeekShopping.ProductAPI
                         UseMySql(connetion,
                            new MySqlServerVersion(new Version(8,0))));
 
+            services.AddScoped<IProductRepository, ProductRepository>();
+
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
             services.AddSingleton(mapper);
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
